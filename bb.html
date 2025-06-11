@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给你的浪漫告白</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        love: {
+                            light: '#ffb6c1',
+                            DEFAULT: '#ff69b4',
+                            dark: '#c71585'
+                        },
+                        sky: {
+                            light: '#87cefa',
+                            DEFAULT: '#1e90ff',
+                            dark: '#00008b'
+                        }
+                    },
+                    fontFamily: {
+                        romantic: ['"Dancing Script"', 'cursive', 'sans-serif'],
+                        love: ['"Love Ya Like A Sister"', 'cursive', 'sans-serif']
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .heart-beat {
+                animation: heartBeat 1.5s infinite;
+            }
+            .float {
+                animation: float 6s ease-in-out infinite;
+            }
+            .float-delay-1 {
+                animation: float 6s ease-in-out 1s infinite;
+            }
+            .float-delay-2 {
+                animation: float 6s ease-in-out 2s infinite;
+            }
+            .float-delay-3 {
+                animation: float 6s ease-in-out 3s infinite;
+            }
+            .float-delay-4 {
+                animation: float 6s ease-in-out 4s infinite;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+            }
+        }
+    </style>
+    
+    <!-- 字体引入 -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-love-light to-sky-light min-h-screen overflow-x-hidden font-romantic">
+    <!-- 背景星星 -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute w-1 h-1 bg-white rounded-full opacity-70 top-[10%] left-[15%] float"></div>
+        <div class="absolute w-1.5 h-1.5 bg-white rounded-full opacity-80 top-[25%] left-[80%] float-delay-1"></div>
+        <div class="absolute w-1 h-1 bg-white rounded-full opacity-60 top-[70%] left-[20%] float-delay-2"></div>
+        <div class="absolute w-0.5 h-0.5 bg-white rounded-full opacity-90 top-[40%] left-[65%] float-delay-3"></div>
+        <div class="absolute w-1 h-1 bg-white rounded-full opacity-70 top-[85%] left-[45%] float-delay-4"></div>
+        <div class="absolute w-0.7 h-0.7 bg-white rounded-full opacity-80 top-[60%] left-[75%] float"></div>
+        <div class="absolute w-1.2 h-1.2 bg-white rounded-full opacity-60 top-[30%] left-[30%] float-delay-2"></div>
+        <div class="absolute w-0.8 h-0.8 bg-white rounded-full opacity-90 top-[15%] left-[60%] float-delay-3"></div>
+        <div class="absolute w-1 h-1 bg-white rounded-full opacity-70 top-[75%] left-[85%] float-delay-4"></div>
+        <div class="absolute w-1.1 h-1.1 bg-white rounded-full opacity-80 top-[50%] left-[10%] float"></div>
+    </div>
+    
+    <!-- 浮动爱心 -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute text-love text-4xl opacity-70 top-[10%] left-[10%] float">
+            <i class="fa fa-heart"></i>
+        </div>
+        <div class="absolute text-love text-3xl opacity-60 top-[20%] left-[80%] float-delay-1">
+            <i class="fa fa-heart"></i>
+        </div>
+        <div class="absolute text-love text-5xl opacity-50 top-[70%] left-[20%] float-delay-2">
+            <i class="fa fa-heart"></i>
+        </div>
+        <div class="absolute text-love text-2xl opacity-80 top-[40%] left-[60%] float-delay-3">
+            <i class="fa fa-heart"></i>
+        </div>
+        <div class="absolute text-love text-4xl opacity-60 top-[80%] left-[40%] float-delay-4">
+            <i class="fa fa-heart"></i>
+        </div>
+    </div>
+    
+    <!-- 主容器 -->
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-8">
+        <!-- 初始显示的内容 -->
+        <div id="start-container" class="w-full max-w-md text-center transition-all duration-500 ease-in-out">
+            <div class="mb-10">
+                <div class="text-love-dark text-6xl md:text-8xl font-bold mb-4 heart-beat">
+                    <i class="fa fa-heart"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-romantic text-white text-shadow-lg mb-6">
+                    给我最爱的人
+                </h1>
+                <p class="text-lg md:text-xl text-white text-shadow mb-8">
+                    有一句话，我一直想对你说...
+                </p>
+            </div>
+            
+            <button id="start-button" class="bg-love hover:bg-love-dark text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transform transition hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-love">
+                开始
+            </button>
+        </div>
+        
+        <!-- 告白内容容器 - 默认隐藏 -->
+        <div id="confession-container" class="w-full max-w-md bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 opacity-0 translate-y-10 transition-all duration-700 ease-out hidden">
+            <div class="text-center mb-8">
+                <div class="text-love text-5xl mb-4">
+                    <i class="fa fa-heart heart-beat"></i>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-romantic text-love-dark mb-4">亲爱的 [对方名字]</h2>
+                <div class="w-20 h-1 bg-love mx-auto rounded-full mb-6"></div>
+            </div>
+            
+            <div class="text-left text-lg text-gray-800 mb-8">
+                <p class="mb-4">在这个特别的时刻，我想对你说：</p>
+                <p class="mb-4">从见到你的第一眼起，我的心就被你深深吸引。</p>
+                <p class="mb-4">你的笑容如阳光般温暖，照亮了我生活的每一个角落。</p>
+                <p class="mb-4">与你在一起的每一刻，都让我感到无比幸福和安心。</p>
+                <p class="mb-4">我知道，这是一种特别的感觉，是我从未有过的心动。</p>
+                <p class="mb-4">我想告诉你，我喜欢你，不仅仅是现在，而是永远。</p>
+                <p class="mb-4">希望你能接受我的心意，给我一个机会，让我走进你的生活，陪伴你走过每一个美好的瞬间。</p>
+            </div>
+            
+            <div class="text-center">
+                <button id="confirm-button" class="bg-love hover:bg-love-dark text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transform transition hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-love">
+                    接受我的心意
+                </button>
+            </div>
+        </div>
+        
+        <!-- 结果页面 - 默认隐藏 -->
+        <div id="result-container" class="w-full max-w-md text-center opacity-0 translate-y-10 transition-all duration-700 ease-out hidden">
+            <div class="text-love text-8xl mb-6 heart-beat">
+                <i class="fa fa-heart"></i>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-romantic text-white text-shadow-lg mb-4">
+                我爱你！
+            </h2>
+            <p class="text-xl text-white text-shadow mb-8">
+                我会用一生的时间来证明这份爱
+            </p>
+            <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+                <p class="text-lg text-gray-800 mb-4">
+                    亲爱的，谢谢你接受我的心意。我会珍惜我们在一起的每一刻，
+                    用我的全部真心去爱你、呵护你，直到永远。
+                </p>
+                <div class="text-love text-4xl mb-4">
+                    <i class="fa fa-heart heart-beat"></i>
+                </div>
+                <p class="text-lg text-gray-800">
+                    永远爱你的 [你的名字]
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 背景动画 -->
+    <div class="fixed inset-0 bg-gradient-to-b from-love/20 to-sky/20 z-0"></div>
+    
+    <script>
+        // 获取DOM元素
+        const startContainer = document.getElementById('start-container');
+        const confessionContainer = document.getElementById('confession-container');
+        const resultContainer = document.getElementById('result-container');
+        const startButton = document.getElementById('start-button');
+        const confirmButton = document.getElementById('confirm-button');
+        
+        // 点击开始按钮
+        startButton.addEventListener('click', () => {
+            // 隐藏开始容器
+            startContainer.classList.add('opacity-0', 'translate-y-10');
+            
+            // 延迟显示告白内容
+            setTimeout(() => {
+                startContainer.classList.add('hidden');
+                confessionContainer.classList.remove('hidden');
+                
+                // 触发重排，使过渡动画生效
+                void confessionContainer.offsetWidth;
+                
+                // 显示告白内容
+                confessionContainer.classList.remove('opacity-0', 'translate-y-10');
+            }, 500);
+        });
+        
+        // 点击确认按钮
+        confirmButton.addEventListener('click', () => {
+            // 隐藏告白内容
+            confessionContainer.classList.add('opacity-0', 'translate-y-10');
+            
+            // 延迟显示结果
+            setTimeout(() => {
+                confessionContainer.classList.add('hidden');
+                resultContainer.classList.remove('hidden');
+                
+                // 触发重排，使过渡动画生效
+                void resultContainer.offsetWidth;
+                
+                // 显示结果
+                resultContainer.classList.remove('opacity-0', 'translate-y-10');
+                
+                // 添加更多爱心
+                createHearts();
+            }, 500);
+        });
+        
+        // 创建爱心动画
+        function createHearts() {
+            const container = document.querySelector('body');
+            const colors = ['#ff69b4', '#ff1493', '#db7093', '#ffb6c1', '#c71585'];
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'fixed text-love text-xl pointer-events-none';
+                heart.innerHTML = '<i class="fa fa-heart"></i>';
+                
+                // 随机位置和颜色
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const size = Math.random() * 30 + 10;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const duration = Math.random() * 5 + 3;
+                
+                heart.style.left = `${x}vw`;
+                heart.style.top = `${y}vh`;
+                heart.style.fontSize = `${size}px`;
+                heart.style.color = color;
+                heart.style.opacity = '0.7';
+                heart.style.animation = `float ${duration}s ease-in-out ${Math.random() * 2}s infinite`;
+                
+                container.appendChild(heart);
+                
+                // 随机旋转
+                heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                // 移除动画元素
+                setTimeout(() => {
+                    heart.remove();
+                }, 10000);
+            }
+        }
+        
+        // 定义动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes heartBeat {
+                0% { transform: scale(1); }
+                14% { transform: scale(1.1); }
+                28% { transform: scale(1); }
+                42% { transform: scale(1.1); }
+                70% { transform: scale(1); }
+            }
+            
+            @keyframes float {
+                0% { transform: translateY(0px) rotate(0deg); }
+                50% { transform: translateY(-20px) rotate(5deg); }
+                100% { transform: translateY(0px) rotate(0deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
